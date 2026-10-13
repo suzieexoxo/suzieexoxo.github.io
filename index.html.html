@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hana Suzanne Iligan | QA Intern &amp; IT Student</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#FFF1F3; --ink:#3B0A1A; --card:#FFFFFF; --line:#6B1230;
+  --maroon:#6B1230; --hero:#6B1230; --hero-ink:#FFE3E8;
+  --pink:#F7A8B8; --butter:#FFD66B; --mint:#8FD6C0; --soft:#FBD9DF;
+  --display:'Bagel Fat One','Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif;
+  --body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#2A0713; --ink:#FFE3E8; --card:#3F0F21; --line:#F7A8B8; --hero:#4A0C21; --soft:#55182C;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#2A0713; --ink:#FFE3E8; --card:#3F0F21; --line:#F7A8B8; --hero:#4A0C21; --soft:#55182C;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.08;margin:0}
+p{margin:0 0 1em;max-width:62ch}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--butter);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1080px,100% - 40px);margin-inline:auto}
+
+/* ---------- hero ---------- */
+.hero{background:var(--hero);color:var(--hero-ink);position:relative;padding:22px 0 0;overflow:hidden}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.logo{font-family:var(--display);font-size:1.25rem;text-decoration:none;color:var(--butter)}
+.top nav{display:flex;gap:6px;flex-wrap:wrap}
+.top nav a{text-decoration:none;padding:6px 14px;border-radius:99px;font-weight:600;font-size:.95rem}
+.top nav a:hover{background:rgba(255,227,232,.14)}
+.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center;padding:72px 0 120px}
+.hero h1{font-size:clamp(2.8rem,8vw,5.6rem);color:var(--hero-ink)}
+.hero h1 span{display:block;color:var(--pink)}
+.hero .sub{font-size:1.25rem;margin-top:22px;max-width:30ch}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.pill{background:rgba(255,227,232,.12);border:2px solid rgba(255,227,232,.45);padding:5px 14px;border-radius:99px;font-weight:600;font-size:.95rem}
+.pill.on{background:var(--butter);color:#3B0A1A;border-color:var(--butter)}
+.polaroid{background:#FFF8F9;color:#3B0A1A;padding:14px 14px 18px;border-radius:6px;transform:rotate(2deg);box-shadow:6px 6px 0 rgba(0,0,0,.22);max-width:300px;justify-self:center;position:relative}
+.polaroid::before{content:"";position:absolute;top:-14px;left:50%;width:90px;height:28px;background:var(--butter);opacity:.9;transform:translateX(-50%) rotate(-4deg)}
+.polaroid .photo{aspect-ratio:4/5;background:repeating-linear-gradient(45deg,#FBD9DF 0 12px,#F7C4CE 12px 24px);border:2px dashed #6B1230;display:grid;place-items:center;text-align:center;font-family:var(--display);color:#6B1230;font-size:1.3rem;padding:20px;overflow:hidden}
+.polaroid .photo img{width:100%;height:100%;object-fit:cover;display:block}
+.polaroid figcaption{font-family:var(--display);text-align:center;margin-top:12px;font-size:1.15rem}
+
+.bughunt{position:absolute;inset:0;pointer-events:none;z-index:5}
+.bug{position:absolute;width:46px;height:46px;pointer-events:auto;background:none;border:0;padding:0;cursor:pointer;color:var(--c);animation:wander 5s ease-in-out infinite;animation-delay:var(--d)}
+.bug svg{width:100%;height:100%;display:block;transition:transform .15s}
+.bug:hover svg{transform:scale(1.15) rotate(8deg)}
+.bug.squished{pointer-events:none;animation:none;opacity:.4}
+.bug.squished svg{transform:scale(1.5,.28)}
+@keyframes wander{0%,100%{transform:translate(0,0) rotate(-6deg)}25%{transform:translate(14px,-8px) rotate(10deg)}50%{transform:translate(4px,10px) rotate(-4deg)}75%{transform:translate(-12px,-4px) rotate(8deg)}}
+.hunt-bar{position:relative;z-index:2;display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:rgba(0,0,0,.18);border:0;border-radius:16px;padding:10px 16px;margin:-60px 0 74px;font-weight:600}
+.hunt-bar b{font-family:var(--display);font-weight:400;color:var(--butter);font-size:1.1rem}
+.hunt-bar button{margin-left:auto;font:inherit;font-weight:600;background:transparent;color:inherit;border:2px solid rgba(255,227,232,.5);border-radius:99px;padding:3px 14px;cursor:pointer}
+.hunt-bar button:hover{background:rgba(255,227,232,.14)}
+.wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:60px;display:block}
+.wave path{fill:var(--bg)}
+
+/* ---------- sections ---------- */
+section{padding:96px 0}
+.h2{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:10px}
+.squig{display:block;width:90px;height:12px;margin:0 0 34px;color:var(--line)}
+.lede{font-size:1.1rem;opacity:.92}
+
+/* ---------- ticket (the one pattern used everywhere) ---------- */
+.grid{display:grid;gap:36px 32px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.grid.start{align-items:start}
+.ticket{background:var(--card);border:2px solid var(--line);border-radius:20px;box-shadow:4px 4px 0 var(--line);position:relative;overflow:visible}
+.t-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:24px 28px 20px}
+.t-id{font-weight:700;font-size:.85rem;opacity:.7}
+.t-title{font-size:1.4rem;margin-top:4px}
+.stamp{flex:none;font-family:var(--display);font-size:.85rem;padding:2px 12px;border:2px solid var(--line);border-radius:10px;background:var(--butter);color:#3B0A1A;border-color:#3B0A1A}
+.stamp.mint{background:var(--mint)}
+.stamp.pink{background:var(--pink)}
+.perf{position:relative;border-top:2px dashed var(--line);margin:0}
+.perf::before,.perf::after{content:"";position:absolute;top:-13px;width:24px;height:24px;border-radius:50%;background:var(--bg);border:2px solid var(--line)}
+.perf::before{left:-13px;clip-path:inset(0 0 0 50%)}
+.perf::after{right:-13px;clip-path:inset(0 50% 0 0)}
+.t-body{padding:22px 28px 28px}
+.t-body p:last-child{margin-bottom:0}
+.meta{font-weight:600;opacity:.8;margin-bottom:10px}
+.stat{display:inline-block;background:var(--mint);color:#3B0A1A;border-radius:12px;padding:2px 12px;font-weight:700;margin-top:6px}
+
+/* about */
+.about{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:start}
+.sheet dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 18px}
+.sheet dt{font-weight:700;opacity:.7}
+.sheet dd{margin:0;font-weight:600}
+.swatch{display:inline-block;width:16px;height:16px;border-radius:50%;background:#7A1230;border:2px solid var(--line);vertical-align:-2px;margin-right:6px}
+
+/* chips / inventory */
+.slots{display:flex;flex-wrap:wrap;gap:12px}
+.slot{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:10px 20px;font-weight:700;box-shadow:4px 4px 0 var(--line)}
+.slot.learning{background:var(--butter);color:#3B0A1A;border-color:#3B0A1A;box-shadow:4px 4px 0 #3B0A1A}
+
+/* project details */
+details{border-top:2px dashed var(--line)}
+summary{cursor:pointer;padding:16px 28px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--display);font-size:1.5rem;line-height:1;transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details .inner{padding:4px 28px 28px;font-size:.97rem}
+.inner ol,.inner ul{margin:0 0 .8em;padding-left:1.2em}
+.inner li{margin-bottom:4px}
+.tbl{overflow-x:auto;margin-bottom:.6em}
+table{border-collapse:collapse;width:100%;min-width:420px;font-size:.92rem}
+th,td{text-align:left;padding:7px 10px;border-bottom:1.5px solid var(--soft);vertical-align:top}
+th{background:var(--soft)}
+.ok{color:#1B7A5E;font-weight:700}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ok{color:var(--mint)}}
+:root[data-theme="dark"] .ok{color:var(--mint)}
+.note{background:var(--soft);border-radius:16px;padding:16px 22px;margin-bottom:44px;max-width:none;font-size:.97rem}
+
+/* games */
+.game{text-align:center}
+.game .t-body{padding:18px 16px 22px}
+.game h3{font-size:1.4rem}
+.game .face{font-size:2.2rem}
+
+/* contact */
+.contact{background:var(--hero);color:var(--hero-ink);border-radius:28px;padding:72px 40px;text-align:center;position:relative;overflow:hidden}
+.contact h2{color:var(--butter);margin-bottom:14px}
+.contact p{margin-inline:auto}
+.btn{display:inline-block;background:var(--butter);color:#3B0A1A;font-weight:700;text-decoration:none;padding:12px 26px;border-radius:99px;border:2px solid #3B0A1A;box-shadow:4px 4px 0 #3B0A1A;margin-top:8px;transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 #3B0A1A}
+footer{padding:30px 0 120px;text-align:center;font-weight:600;opacity:.8}
+
+/* ---------- chatbot ---------- */
+.chat-fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:50;font:inherit;font-weight:700;background:var(--butter);color:#3B0A1A;border:2px solid #3B0A1A;border-radius:99px;padding:12px 20px;box-shadow:4px 4px 0 #3B0A1A;cursor:pointer;display:flex;gap:8px;align-items:center}
+.chat-fab svg{width:22px;height:22px}
+.chat{position:fixed;right:14px;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:60;width:min(380px,calc(100vw - 28px));height:min(520px,calc(100dvh - 150px));background:var(--card);border:2px solid var(--line);border-radius:22px;box-shadow:4px 4px 0 var(--line);display:flex;flex-direction:column;overflow:hidden}
+.chat[hidden]{display:none}
+.chat-head{background:var(--hero);color:var(--hero-ink);padding:12px 16px;display:flex;align-items:center;gap:10px}
+.chat-head strong{font-family:var(--display);font-weight:400;font-size:1.15rem;color:var(--butter)}
+.chat-head small{display:block;opacity:.85;font-size:.8rem;line-height:1.2}
+.chat-head button{margin-left:auto;background:none;border:2px solid rgba(255,227,232,.5);color:inherit;border-radius:50%;width:32px;height:32px;font-size:1.1rem;cursor:pointer}
+.chat-head svg{width:30px;height:30px;color:var(--butter);flex:none}
+.msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:86%;padding:9px 14px;border-radius:16px;font-size:.95rem;line-height:1.45;white-space:pre-wrap;word-wrap:break-word}
+.m.bot{background:var(--soft);border-bottom-left-radius:4px;align-self:flex-start}
+.m.me{background:var(--maroon);color:#FFE3E8;border-bottom-right-radius:4px;align-self:flex-end}
+:root[data-theme="dark"] .m.me{background:var(--pink);color:#3B0A1A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .m.me{background:var(--pink);color:#3B0A1A}}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 8px}
+.chips button{font:inherit;font-size:.82rem;font-weight:600;background:transparent;color:var(--ink);border:2px solid var(--line);border-radius:99px;padding:3px 11px;cursor:pointer}
+.chips button:hover{background:var(--butter);color:#3B0A1A}
+.chat-form{display:flex;gap:8px;padding:10px 12px;border-top:2px dashed var(--line)}
+.chat-form input{flex:1;min-width:0;font:inherit;font-size:16px;padding:9px 14px;border-radius:99px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+.chat-form button{font:inherit;font-weight:700;background:var(--maroon);color:#FFE3E8;border:0;border-radius:99px;padding:0 18px;cursor:pointer}
+.chat-form button:disabled{opacity:.5;cursor:default}
+
+/* ---------- responsive ---------- */
+@media (max-width:860px){
+  .hero-grid{grid-template-columns:1fr;padding-bottom:90px}
+  .polaroid{max-width:240px}
+  .g3,.g4{grid-template-columns:1fr 1fr}
+  .about{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  .g2,.g3{grid-template-columns:1fr}
+  .g4{grid-template-columns:1fr 1fr}
+  .contact{padding:44px 22px}
+  .top nav a{padding:5px 10px}
+  section{padding:54px 0}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="bugsym" viewBox="0 0 40 40">
+    <path d="M13 8 L9 3 M27 8 L31 3" stroke="#3B0A1A" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <path d="M7 20 L2 17 M7 27 L2 30 M33 20 L38 17 M33 27 L38 30" stroke="#3B0A1A" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+    <ellipse cx="20" cy="25" rx="13.5" ry="13.5" fill="currentColor" stroke="#3B0A1A" stroke-width="2.4"/>
+    <path d="M20 12 V38" stroke="#3B0A1A" stroke-width="2"/>
+    <circle cx="20" cy="10" r="6.5" fill="#3B0A1A"/>
+    <circle cx="17.6" cy="9" r="1.3" fill="#FFF"/><circle cx="22.4" cy="9" r="1.3" fill="#FFF"/>
+    <circle cx="14" cy="22" r="2.4" fill="#3B0A1A"/><circle cx="26" cy="22" r="2.4" fill="#3B0A1A"/>
+    <circle cx="14.5" cy="30" r="2.1" fill="#3B0A1A"/><circle cx="25.5" cy="30" r="2.1" fill="#3B0A1A"/>
+  </symbol>
+</svg>
+
+<header class="hero" id="top">
+  <div class="bughunt" id="bughunt" aria-label="Bug hunt game">
+    <button class="bug" style="--c:#FFD66B;--d:0s;left:44%;top:36%" aria-label="Squash bug"><svg><use href="#bugsym"/></svg></button>
+    <button class="bug" style="--c:#8FD6C0;--d:-1.2s;left:50%;top:10%" aria-label="Squash bug"><svg><use href="#bugsym"/></svg></button>
+    <button class="bug" style="--c:#F7A8B8;--d:-2.4s;left:84%;top:16%" aria-label="Squash bug"><svg><use href="#bugsym"/></svg></button>
+    <button class="bug" style="--c:#FFD66B;--d:-3.1s;left:60%;top:62%" aria-label="Squash bug"><svg><use href="#bugsym"/></svg></button>
+    <button class="bug" style="--c:#8FD6C0;--d:-.7s;left:38%;top:80%" aria-label="Squash bug"><svg><use href="#bugsym"/></svg></button>
+  </div>
+
+  <div class="wrap" style="position:relative">
+    <div class="top">
+      <a class="logo" href="#top">Hana S. Iligan</a>
+      <nav aria-label="Main">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+
+    <div class="hero-grid">
+      <div>
+        <h1>Hana Suzanne <span>Iligan</span></h1>
+        <p class="sub">I'm a QA intern who likes finding what's broken, so it can be fixed before anyone else notices.</p>
+        <div class="pills">
+          <span class="pill on">QA Intern</span>
+          <span class="pill">4th-year IT student</span>
+          <span class="pill">Manila, PH</span>
+        </div>
+      </div>
+      <figure class="polaroid" style="margin:0" id="photoFrame">
+        <div class="photo" id="photoSlot">Photo coming soon</div>
+        <figcaption>Hana, QA in training</figcaption>
+      </figure>
+    </div>
+
+    <div class="hunt-bar" role="status" aria-live="polite">
+      <span>Bug hunt: <b id="huntCount">0 / 5</b> squashed</span>
+      <span id="huntMsg">Five bugs are hiding up here. Click to squash them.</span>
+      <button type="button" id="huntReset">Reset bugs</button>
+    </div>
+  </div>
+
+  <svg class="wave" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 30 Q 50 0 100 30 T 200 30 T 300 30 T 400 30 T 500 30 T 600 30 T 700 30 T 800 30 T 900 30 T 1000 30 T 1100 30 T 1200 30 V60 H0 Z"/>
+  </svg>
+</header>
+
+<main>
+<section id="about">
+  <div class="wrap about">
+    <div>
+      <h2 class="h2">About me</h2>
+      <svg class="squig" viewBox="0 0 120 14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" aria-hidden="true"><path d="M3 7 Q 15 -2 27 7 T 51 7 T 75 7 T 99 7 T 117 7"/></svg>
+      <p class="lede">Hi, I'm Hana! I'm a fourth-year Information Technology student at Philippine Christian University, Manila, and I'm currently working as a QA intern.</p>
+      <p>I started in customer service, where I learned to stay calm, listen closely, and solve problems for real people. Now I'm using that same habit of paying attention to test software, with an extra interest in web design.</p>
+      <p>I'm early in my career and I'm still learning, and I want to grow in the QA field.</p>
+    </div>
+    <article class="ticket sheet">
+      <div class="t-head">
+        <div><div class="t-id">HSI-000</div><h3 class="t-title">Character sheet</h3></div>
+        <span class="stamp mint">verified</span>
+      </div>
+      <div class="perf"></div>
+      <div class="t-body">
+        <dl>
+          <dt>Name</dt><dd>Hana Suzanne Iligan</dd>
+          <dt>Class</dt><dd>IT student, 4th year</dd>
+          <dt>School</dt><dd>Philippine Christian University, Manila</dd>
+          <dt>Main quest</dt><dd>Quality assurance</dd>
+          <dt>Side quest</dt><dd>Web design</dd>
+          <dt>Favorite color</dt><dd><span class="swatch"></span>Maroon</dd>
+        </dl>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="experience" style="padding-top:10px">
+  <div class="wrap">
+    <h2 class="h2">Experience</h2>
+    <svg class="squig" viewBox="0 0 120 14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" aria-hidden="true"><path d="M3 7 Q 15 -2 27 7 T 51 7 T 75 7 T 99 7 T 117 7"/></svg>
+    <div class="grid g2">
+      <article class="ticket">
+        <div class="t-head">
+          <div><div class="t-id">HSI-101</div><h3 class="t-title">QA Intern</h3></div>
+          <span class="stamp">current</span>
+        </div>
+        <div class="perf"></div>
+        <div class="t-body">
+          <p class="meta">Present</p>
+          <p>I'm learning how testing works in a real team: checking that features behave the way they should and reporting what doesn't. I'm building toward a full-time career in QA.</p>
+        </div>
+      </article>
+      <article class="ticket">
+        <div class="t-head">
+          <div><div class="t-id">HSI-102</div><h3 class="t-title">Call Center Agent</h3></div>
+          <span class="stamp mint">completed</span>
+        </div>
+        <div class="perf"></div>
+        <div class="t-body">
+          <p class="meta">Alorica, MOA &middot; 3 months</p>
+          <p>I handled customer concerns, stayed calm under pressure, and met performance targets.</p>
+          <span class="stat">98% overall metric score</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2 class="h2">Practice projects</h2>
+    <svg class="squig" viewBox="0 0 120 14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" aria-hidden="true"><path d="M3 7 Q 15 -2 27 7 T 51 7 T 75 7 T 99 7 T 117 7"/></svg>
+    <p class="note"><strong>Transparency note:</strong> These are practice exercises about a made-up app called <em>Petal</em>, a plant-care app that doesn't exist. They show how I plan tests and write bug reports. Tap any ticket to open it.</p>
+
+    <div class="grid g2 start">
+      <article class="ticket">
+        <div class="t-head">
+          <div><div class="t-id">HSI-201</div><h3 class="t-title">Login page test cases</h3></div>
+          <span class="stamp pink">practice</span>
+        </div>
+        <div class="t-body" style="padding-top:0"><p>Seven test cases that cover the normal path, wrong input, and edge cases for Petal's login form.</p></div>
+        <details>
+          <summary>Open test cases</summary>
+          <div class="inner">
+            <div class="tbl"><table>
+              <tr><th>Case</th><th>Steps</th><th>Expected</th></tr>
+              <tr><td>Valid login</td><td>Enter a correct email and password, then tap Log in</td><td>User lands on the home screen</td></tr>
+              <tr><td>Wrong password</td><td>Correct email, wrong password</td><td>Clear error message, password field cleared</td></tr>
+              <tr><td>Empty fields</td><td>Tap Log in with both fields empty</td><td>Both fields show "required" messages</td></tr>
+              <tr><td>Bad email format</td><td>Enter "hana@" as the email</td><td>Format error appears before submitting</td></tr>
+              <tr><td>Password masked</td><td>Type a password</td><td>Characters are hidden; "show" toggle reveals them</td></tr>
+              <tr><td>Repeated failures</td><td>Fail login five times in a row</td><td>Account is temporarily locked with a clear message</td></tr>
+              <tr><td>Enter key</td><td>Fill the form and press Enter</td><td>Form submits like the button does</td></tr>
+            </table></div>
+          </div>
+        </details>
+      </article>
+
+      <article class="ticket">
+        <div class="t-head">
+          <div><div class="t-id">HSI-202</div><h3 class="t-title">Bug report: stuck button</h3></div>
+          <span class="stamp pink">practice</span>
+        </div>
+        <div class="t-body" style="padding-top:0"><p>A sample report showing how I describe a problem so a developer can reproduce it quickly.</p></div>
+        <details>
+          <summary>Open bug report</summary>
+          <div class="inner">
+            <p><strong>Title:</strong> "Place order" stays disabled after fixing a form error</p>
+            <p><strong>Severity:</strong> Medium &nbsp; <strong>Priority:</strong> High</p>
+            <p><strong>Steps to reproduce</strong></p>
+            <ol>
+              <li>Add any plant to the cart and go to checkout.</li>
+              <li>Leave the phone number empty and tap Place order. An error appears.</li>
+              <li>Enter a valid phone number.</li>
+            </ol>
+            <p><strong>Expected:</strong> The error clears and Place order becomes active.</p>
+            <p><strong>Actual:</strong> The error clears, but the button stays grey until the page is reloaded.</p>
+            <p><strong>Notes:</strong> Happens every time. Does not happen if the field is filled correctly the first time.</p>
+          </div>
+        </details>
+      </article>
+
+      <article class="ticket">
+        <div class="t-head">
+          <div><div class="t-id">HSI-203</div><h3 class="t-title">Mini test plan</h3></div>
+          <span class="stamp pink">practice</span>
+        </div>
+        <div class="t-body" style="padding-top:0"><p>A one-page plan for testing Petal's "add a plant" feature before release.</p></div>
+        <details>
+          <summary>Open test plan</summary>
+          <div class="inner">
+            <p><strong>Scope:</strong> Adding a plant with a name, photo, and watering schedule.</p>
+            <p><strong>Out of scope:</strong> Notifications, user accounts, payments.</p>
+            <p><strong>Approach</strong></p>
+            <ul>
+              <li>Manual functional testing of each field</li>
+              <li>Boundary checks (very long names, large photos, no photo)</li>
+              <li>Quick check on a phone-sized screen and a desktop browser</li>
+            </ul>
+            <p><strong>Ready to start when:</strong> the feature is deployed to a test build.</p>
+            <p><strong>Done when:</strong> all planned cases are run and no high-severity bugs remain open.</p>
+          </div>
+        </details>
+      </article>
+
+      <article class="ticket">
+        <div class="t-head">
+          <div><div class="t-id">HSI-204</div><h3 class="t-title">Usability check</h3></div>
+          <span class="stamp pink">practice</span>
+        </div>
+        <div class="t-body" style="padding-top:0"><p>A short review of Petal's home screen, looking at it the way a first-time user would.</p></div>
+        <details>
+          <summary>Open usability notes</summary>
+          <div class="inner">
+            <p><span class="ok">Works well:</span> the "Add plant" button is easy to spot and the plant cards are clear.</p>
+            <p><strong>Could improve</strong></p>
+            <ul>
+              <li>Watering reminders use only color to show urgency. Add a label or icon for color-blind users.</li>
+              <li>Tap targets on the filter chips are small on mobile.</li>
+              <li>The empty state says "Nothing here" but doesn't tell a new user what to do next.</li>
+              <li>Body text in the light-grey cards is hard to read against the background.</li>
+            </ul>
+            <p><strong>Suggested next step:</strong> test with three first-time users and note where they hesitate.</p>
+          </div>
+        </details>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2 class="h2">Skills</h2>
+    <svg class="squig" viewBox="0 0 120 14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" aria-hidden="true"><path d="M3 7 Q 15 -2 27 7 T 51 7 T 75 7 T 99 7 T 117 7"/></svg>
+    <div class="slots">
+      <span class="slot">HTML</span>
+      <span class="slot">CSS</span>
+      <span class="slot">Figma</span>
+      <span class="slot">Excel</span>
+      <span class="slot">Customer service</span>
+      <span class="slot learning">QA testing (learning)</span>
+    </div>
+
+    <h2 class="h2" style="margin-top:96px">Off the clock</h2>
+    <svg class="squig" viewBox="0 0 120 14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" aria-hidden="true"><path d="M3 7 Q 15 -2 27 7 T 51 7 T 75 7 T 99 7 T 117 7"/></svg>
+    <p class="lede" style="margin-bottom:28px">I play a lot of games, in lots of different genres. Switching between them keeps me curious about how things are built.</p>
+    <div class="grid g4" id="gameGrid">
+      <article class="ticket game"><div class="t-head" style="justify-content:center;padding-bottom:6px"><div class="face" aria-hidden="true">⛏️</div></div><div class="perf"></div><div class="t-body"><h3>Minecraft</h3></div></article>
+      <article class="ticket game"><div class="t-head" style="justify-content:center;padding-bottom:6px"><div class="face" aria-hidden="true">🎯</div></div><div class="perf"></div><div class="t-body"><h3>Valorant</h3></div></article>
+      <article class="ticket game"><div class="t-head" style="justify-content:center;padding-bottom:6px"><div class="face" aria-hidden="true">♟️</div></div><div class="perf"></div><div class="t-body"><h3>TFT</h3></div></article>
+      <article class="ticket game"><div class="t-head" style="justify-content:center;padding-bottom:6px"><div class="face" aria-hidden="true">🧱</div></div><div class="perf"></div><div class="t-body"><h3>Roblox</h3></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding-top:20px">
+  <div class="wrap">
+    <div class="contact">
+      <h2>Found a bug in my portfolio?</h2>
+      <p>I'd love to hear about it, and about any QA opportunities too. Come say hi on GitHub, or ask my chatbot anything about me.</p>
+      <a class="btn" href="https://github.com/suzieexoxo" target="_blank" rel="noopener">github.com/suzieexoxo</a>
+      <!-- Add your email or LinkedIn here later, e.g. <a class="btn" href="mailto:you@example.com">Email me</a> -->
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>Made in maroon, with a few too many bugs on purpose.</footer>
+
+<!-- Chatbot -->
+<button class="chat-fab" id="chatFab" aria-expanded="false" aria-controls="chat">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+  Ask about Hana
+</button>
+<section class="chat" id="chat" hidden aria-label="Chat with Hana's assistant" style="padding:0">
+  <div class="chat-head">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><use href="#bugsym"/></svg>
+    <div><strong>Hana's helper bot</strong><small>An AI that answers questions about Hana</small></div>
+    <button type="button" id="chatClose" aria-label="Close chat">&times;</button>
+  </div>
+  <div class="msgs" id="msgs" aria-live="polite"></div>
+  <div class="chips" id="chips">
+    <button type="button">What does Hana do?</button>
+    <button type="button">What are her skills?</button>
+    <button type="button">Tell me about her experience</button>
+  </div>
+  <form class="chat-form" id="chatForm">
+    <input id="chatInput" type="text" placeholder="Ask me anything about Hana" autocomplete="off" aria-label="Your question" maxlength="300">
+    <button type="submit" id="chatSend">Send</button>
+  </form>
+</section>
+
+<script>
+/* ---------- project tickets: only one open at a time ---------- */
+(function(){
+  var all = Array.prototype.slice.call(document.querySelectorAll('#projects details'));
+  all.forEach(function(d){
+    d.addEventListener('toggle', function(){
+      if(d.open){ all.forEach(function(o){ if(o !== d) o.open = false; }); }
+    });
+  });
+})();
+
+/* ---------- bug hunt ---------- */
+(function(){
+  var bugs = Array.prototype.slice.call(document.querySelectorAll('.bug'));
+  var count = document.getElementById('huntCount');
+  var msg = document.getElementById('huntMsg');
+  var total = bugs.length, done = 0;
+  function update(){
+    count.textContent = done + ' / ' + total;
+    msg.textContent = done === total
+      ? 'All squashed. Zero open bugs. Now scroll down to see how I find the rest.'
+      : (done === 0 ? 'Five bugs are hiding up here. Click to squash them.' : 'Nice catch. Keep going.');
+  }
+  bugs.forEach(function(b){
+    b.addEventListener('click', function(){
+      if(b.classList.contains('squished')) return;
+      b.classList.add('squished'); b.setAttribute('aria-hidden','true'); b.tabIndex = -1;
+      done++; update();
+    });
+  });
+  document.getElementById('huntReset').addEventListener('click', function(){
+    bugs.forEach(function(b){ b.classList.remove('squished'); b.removeAttribute('aria-hidden'); b.tabIndex = 0; });
+    done = 0; update();
+  });
+})();
+
+/* ---------- photo slot: set PHOTO_URL later (a data: URI or an uploaded asset) ---------- */
+(function(){
+  var PHOTO_URL = ''; // paste your photo link here later
+  if(PHOTO_URL){
+    var slot = document.getElementById('photoSlot');
+    slot.textContent = '';
+    var img = document.createElement('img');
+    img.src = PHOTO_URL; img.alt = 'Photo of Hana Suzanne Iligan';
+    slot.appendChild(img);
+  }
+})();
+
+/* ---------- chatbot ---------- */
+(function(){
+  var fab = document.getElementById('chatFab');
+  var panel = document.getElementById('chat');
+  var closeBtn = document.getElementById('chatClose');
+  var msgs = document.getElementById('msgs');
+  var form = document.getElementById('chatForm');
+  var input = document.getElementById('chatInput');
+  var sendBtn = document.getElementById('chatSend');
+  var chips = document.getElementById('chips');
+  var history = [];
+  var busy = false;
+
+  var FACTS = [
+    "You are the friendly assistant on the portfolio website of Hana Suzanne Iligan. Answer visitor questions about Hana in a warm, concise way (1 to 4 short sentences, plain text, no markdown).",
+    "Only use the facts below. If you are asked something that is not covered, say you don't know that about Hana and point the visitor to her GitHub (github.com/suzieexoxo). Never invent employers, dates, certificates, degrees, awards, projects, or contact details.",
+    "FACTS ABOUT HANA:",
+    "- Full name: Hana Suzanne Iligan. Based in Manila, Philippines.",
+    "- Studies Information Technology, 4th year, at Philippine Christian University - Manila.",
+    "- Currently a QA (quality assurance) intern, and wants to pursue a career in the QA field.",
+    "- Previously worked 3 months as a call center agent at Alorica (MOA), with a 98% overall metric score.",
+    "- Skills: HTML, CSS, Figma, Excel, customer service, and learning QA testing.",
+    "- Interests: QA and web designing. Her favorite color is maroon/red.",
+    "- Plays many kinds of games: Minecraft, Valorant, TFT (Teamfight Tactics), and Roblox.",
+    "- Her portfolio projects are practice exercises about a made-up app called Petal (login test cases, a bug report, a mini test plan, a usability check). They are not client work, and she has no certificates yet. Be honest about this if asked.",
+    "- GitHub: github.com/suzieexoxo. No public email is listed yet.",
+    "Stay on the topic of Hana and her work. Politely decline unrelated requests."
+  ].join("\n");
+
+  function addMsg(text, who){
+    var d = document.createElement('div');
+    d.className = 'm ' + who;
+    d.textContent = text;
+    msgs.appendChild(d);
+    msgs.scrollTop = msgs.scrollHeight;
+    return d;
+  }
+
+  function localAnswer(q){
+    q = q.toLowerCase();
+    if(/(github|contact|email|reach|linkedin)/.test(q)) return "You can find Hana on GitHub at github.com/suzieexoxo. She hasn't listed a public email yet.";
+    if(/(skill|tool|know|html|css|figma|excel)/.test(q)) return "Hana works with HTML, CSS, Figma, and Excel, and she has strong customer service skills. She's also building her QA testing skills as an intern.";
+    if(/(experience|work|alorica|call|agent|job|metric)/.test(q)) return "Hana is a QA intern right now. Before that, she spent 3 months as a call center agent at Alorica (MOA) and finished with a 98% overall metric score.";
+    if(/(school|study|student|univ|college|pcu|course)/.test(q)) return "Hana is a 4th-year Information Technology student at Philippine Christian University - Manila.";
+    if(/(game|play|minecraft|valo|tft|roblox|hobb)/.test(q)) return "Hana plays lots of different games: Minecraft, Valorant, TFT, and Roblox.";
+    if(/(project|certif|portfolio|practice)/.test(q)) return "Hana is early in her career, so her projects here are practice exercises for a made-up app called Petal: login test cases, a bug report, a mini test plan, and a usability check. She doesn't have certificates yet.";
+    if(/(qa|quality|test|goal|career|want|do)/.test(q)) return "Hana is a QA intern who wants to build her career in quality assurance. She's also interested in web design.";
+    if(/(color|colour|maroon|red)/.test(q)) return "Hana's favorite color is maroon, which is why this whole site is maroon.";
+    return "I'm not sure about that one. I can tell you about Hana's skills, experience, studies, games, or how to find her on GitHub (github.com/suzieexoxo).";
+  }
+
+  async function getSample(){
+    try{
+      if(window.claude && typeof window.claude.use === 'function'){
+        return await window.claude.use('sample');
+      }
+    }catch(e){}
+    return null;
+  }
+
+  async function ask(text){
+    if(busy) return;
+    busy = true; sendBtn.disabled = true;
+    chips.style.display = 'none';
+    addMsg(text, 'me');
+    history.push({role:'user', content:text});
+    var bubble = addMsg('Thinking...', 'bot');
+    var answer = '';
+    try{
+      var sample = await getSample();
+      if(!sample) throw {code:'unavailable'};
+      var recent = history.slice(-7);
+      var payload = recent.map(function(m, i){
+        return { role:m.role, content: i === 0 ? FACTS + "\n\nVisitor question: " + m.content : m.content };
+      });
+      var res = await sample(payload, {
+        modelTier:'quick', cache:false,
+        onText:function(t){ bubble.textContent = t.text; msgs.scrollTop = msgs.scrollHeight; }
+      });
+      answer = (res && res.text) ? res.text.trim() : '';
+      if(!answer) throw {code:'empty'};
+      bubble.textContent = answer;
+    }catch(err){
+      var code = err && err.code;
+      if(code === 'rate_limited'){
+        answer = "I'm getting a lot of questions right now. Please try again in a moment.";
+      }else{
+        answer = localAnswer(text);
+      }
+      bubble.textContent = answer;
+    }
+    history.push({role:'assistant', content:answer});
+    busy = false; sendBtn.disabled = false;
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+
+  function open(){
+    panel.hidden = false; fab.setAttribute('aria-expanded','true');
+    if(!msgs.children.length){
+      addMsg("Hi! I'm Hana's helper bot. Ask me about her skills, experience, studies, or what she's aiming for.", 'bot');
+    }
+    document.getElementById('chatInput').focus();
+  }
+  function close(){ panel.hidden = true; fab.setAttribute('aria-expanded','false'); fab.focus(); }
+
+  fab.addEventListener('click', function(){ panel.hidden ? open() : close(); });
+  closeBtn.addEventListener('click', close);
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !panel.hidden) close(); });
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var v = input.value.trim();
+    if(!v) return;
+    input.value = '';
+    ask(v);
+  });
+  chips.addEventListener('click', function(e){
+    if(e.target.tagName === 'BUTTON') ask(e.target.textContent);
+  });
+})();
+</script>
+</body>
+</html>
