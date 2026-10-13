@@ -35,7 +35,6 @@ a{color:inherit}
 :focus-visible{outline:3px solid var(--butter);outline-offset:3px;border-radius:6px}
 .wrap{width:min(1080px,100% - 40px);margin-inline:auto}
 
-/* ---------- hero ---------- */
 .hero{background:var(--hero);color:var(--hero-ink);position:relative;padding:22px 0 0;overflow:hidden}
 .top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 .logo{font-family:var(--display);font-size:1.25rem;text-decoration:none;color:var(--butter)}
@@ -69,13 +68,11 @@ a{color:inherit}
 .wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:60px;display:block}
 .wave path{fill:var(--bg)}
 
-/* ---------- sections ---------- */
 section{padding:96px 0}
 .h2{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:10px}
 .squig{display:block;width:90px;height:12px;margin:0 0 34px;color:var(--line)}
 .lede{font-size:1.1rem;opacity:.92}
 
-/* ---------- ticket (the one pattern used everywhere) ---------- */
 .grid{display:grid;gap:36px 32px}
 .g2{grid-template-columns:repeat(2,1fr)}
 .g3{grid-template-columns:repeat(3,1fr)}
@@ -97,19 +94,16 @@ section{padding:96px 0}
 .meta{font-weight:600;opacity:.8;margin-bottom:10px}
 .stat{display:inline-block;background:var(--mint);color:#3B0A1A;border-radius:12px;padding:2px 12px;font-weight:700;margin-top:6px}
 
-/* about */
 .about{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:start}
 .sheet dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 18px}
 .sheet dt{font-weight:700;opacity:.7}
 .sheet dd{margin:0;font-weight:600}
 .swatch{display:inline-block;width:16px;height:16px;border-radius:50%;background:#7A1230;border:2px solid var(--line);vertical-align:-2px;margin-right:6px}
 
-/* chips / inventory */
 .slots{display:flex;flex-wrap:wrap;gap:12px}
 .slot{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:10px 20px;font-weight:700;box-shadow:4px 4px 0 var(--line)}
 .slot.learning{background:var(--butter);color:#3B0A1A;border-color:#3B0A1A;box-shadow:4px 4px 0 #3B0A1A}
 
-/* project details */
 details{border-top:2px dashed var(--line)}
 summary{cursor:pointer;padding:16px 28px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}
 summary::-webkit-details-marker{display:none}
@@ -127,13 +121,11 @@ th{background:var(--soft)}
 :root[data-theme="dark"] .ok{color:var(--mint)}
 .note{background:var(--soft);border-radius:16px;padding:16px 22px;margin-bottom:44px;max-width:none;font-size:.97rem}
 
-/* games */
 .game{text-align:center}
 .game .t-body{padding:18px 16px 22px}
 .game h3{font-size:1.4rem}
 .game .face{font-size:2.2rem}
 
-/* contact */
 .contact{background:var(--hero);color:var(--hero-ink);border-radius:28px;padding:72px 40px;text-align:center;position:relative;overflow:hidden}
 .contact h2{color:var(--butter);margin-bottom:14px}
 .contact p{margin-inline:auto}
@@ -141,7 +133,6 @@ th{background:var(--soft)}
 .btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 #3B0A1A}
 footer{padding:30px 0 120px;text-align:center;font-weight:600;opacity:.8}
 
-/* ---------- chatbot ---------- */
 .chat-fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:50;font:inherit;font-weight:700;background:var(--butter);color:#3B0A1A;border:2px solid #3B0A1A;border-radius:99px;padding:12px 20px;box-shadow:4px 4px 0 #3B0A1A;cursor:pointer;display:flex;gap:8px;align-items:center}
 .chat-fab svg{width:22px;height:22px}
 .chat{position:fixed;right:14px;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:60;width:min(380px,calc(100vw - 28px));height:min(520px,calc(100dvh - 150px));background:var(--card);border:2px solid var(--line);border-radius:22px;box-shadow:4px 4px 0 var(--line);display:flex;flex-direction:column;overflow:hidden}
@@ -165,7 +156,6 @@ footer{padding:30px 0 120px;text-align:center;font-weight:600;opacity:.8}
 .chat-form button{font:inherit;font-weight:700;background:var(--maroon);color:#FFE3E8;border:0;border-radius:99px;padding:0 18px;cursor:pointer}
 .chat-form button:disabled{opacity:.5;cursor:default}
 
-/* ---------- responsive ---------- */
 @media (max-width:860px){
   .hero-grid{grid-template-columns:1fr;padding-bottom:90px}
   .polaroid{max-width:240px}
@@ -443,7 +433,7 @@ footer{padding:30px 0 120px;text-align:center;font-weight:600;opacity:.8}
       <h2>Found a bug in my portfolio?</h2>
       <p>I'd love to hear about it, and about any QA opportunities too. Come say hi on GitHub, or ask my chatbot anything about me.</p>
       <a class="btn" href="https://github.com/suzieexoxo" target="_blank" rel="noopener">github.com/suzieexoxo</a>
-      <!-- Add your email or LinkedIn here later, e.g. <a class="btn" href="mailto:you@example.com">Email me</a> -->
+      
     </div>
   </div>
 </section>
@@ -451,7 +441,6 @@ footer{padding:30px 0 120px;text-align:center;font-weight:600;opacity:.8}
 
 <footer>Made in maroon, with a few too many bugs on purpose.</footer>
 
-<!-- Chatbot -->
 <button class="chat-fab" id="chatFab" aria-expanded="false" aria-controls="chat">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
   Ask about Hana
@@ -475,7 +464,7 @@ footer{padding:30px 0 120px;text-align:center;font-weight:600;opacity:.8}
 </section>
 
 <script>
-/* ---------- project tickets: only one open at a time ---------- */
+
 (function(){
   var all = Array.prototype.slice.call(document.querySelectorAll('#projects details'));
   all.forEach(function(d){
@@ -485,7 +474,6 @@ footer{padding:30px 0 120px;text-align:center;font-weight:600;opacity:.8}
   });
 })();
 
-/* ---------- bug hunt ---------- */
 (function(){
   var bugs = Array.prototype.slice.call(document.querySelectorAll('.bug'));
   var count = document.getElementById('huntCount');
@@ -510,9 +498,8 @@ footer{padding:30px 0 120px;text-align:center;font-weight:600;opacity:.8}
   });
 })();
 
-/* ---------- photo slot: set PHOTO_URL later (a data: URI or an uploaded asset) ---------- */
 (function(){
-  var PHOTO_URL = ''; // paste your photo link here later
+  var PHOTO_URL = 'hana.jpg'; 
   if(PHOTO_URL){
     var slot = document.getElementById('photoSlot');
     slot.textContent = '';
@@ -522,7 +509,6 @@ footer{padding:30px 0 120px;text-align:center;font-weight:600;opacity:.8}
   }
 })();
 
-/* ---------- chatbot ---------- */
 (function(){
   var fab = document.getElementById('chatFab');
   var panel = document.getElementById('chat');
