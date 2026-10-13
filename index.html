@@ -26,7 +26,7 @@
 :root[data-theme="dark"]{
   --bg:#2A0713; --ink:#FFE3E8; --card:#3F0F21; --line:#F7A8B8; --hero:#4A0C21; --soft:#55182C;
 }
-html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px);scroll-behavior:smooth}
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
 h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.08;margin:0}
@@ -35,13 +35,20 @@ a{color:inherit}
 :focus-visible{outline:3px solid var(--butter);outline-offset:3px;border-radius:6px}
 .wrap{width:min(1080px,100% - 40px);margin-inline:auto}
 
-.hero{background:var(--hero);color:var(--hero-ink);position:relative;padding:22px 0 0;overflow:hidden}
+/* ---------- hero ---------- */
+.hero{background:var(--hero);color:var(--hero-ink);position:relative;padding:0;overflow:hidden}
 .top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 .logo{font-family:var(--display);font-size:1.25rem;text-decoration:none;color:var(--butter)}
 .top nav{display:flex;gap:6px;flex-wrap:wrap}
 .top nav a{text-decoration:none;padding:6px 14px;border-radius:99px;font-weight:600;font-size:.95rem}
 .top nav a:hover{background:rgba(255,227,232,.14)}
-.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center;padding:72px 0 120px}
+.top nav a.active{background:var(--butter);color:#3B0A1A}
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--hero);color:var(--hero-ink);padding:12px 0;box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.topbar .top{flex-wrap:nowrap}
+.topbar nav{overflow-x:auto;scrollbar-width:none;flex-wrap:nowrap}
+.topbar nav::-webkit-scrollbar{display:none}
+.topbar nav a{white-space:nowrap}
+.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center;padding:64px 0 120px}
 .hero h1{font-size:clamp(2.8rem,8vw,5.6rem);color:var(--hero-ink)}
 .hero h1 span{display:block;color:var(--pink)}
 .hero .sub{font-size:1.25rem;margin-top:22px;max-width:30ch}
@@ -68,11 +75,13 @@ a{color:inherit}
 .wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:60px;display:block}
 .wave path{fill:var(--bg)}
 
+/* ---------- sections ---------- */
 section{padding:96px 0}
 .h2{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:10px}
 .squig{display:block;width:90px;height:12px;margin:0 0 34px;color:var(--line)}
 .lede{font-size:1.1rem;opacity:.92}
 
+/* ---------- ticket (the one pattern used everywhere) ---------- */
 .grid{display:grid;gap:36px 32px}
 .g2{grid-template-columns:repeat(2,1fr)}
 .g3{grid-template-columns:repeat(3,1fr)}
@@ -94,16 +103,19 @@ section{padding:96px 0}
 .meta{font-weight:600;opacity:.8;margin-bottom:10px}
 .stat{display:inline-block;background:var(--mint);color:#3B0A1A;border-radius:12px;padding:2px 12px;font-weight:700;margin-top:6px}
 
+/* about */
 .about{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:start}
 .sheet dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:8px 18px}
 .sheet dt{font-weight:700;opacity:.7}
 .sheet dd{margin:0;font-weight:600}
 .swatch{display:inline-block;width:16px;height:16px;border-radius:50%;background:#7A1230;border:2px solid var(--line);vertical-align:-2px;margin-right:6px}
 
+/* chips / inventory */
 .slots{display:flex;flex-wrap:wrap;gap:12px}
 .slot{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:10px 20px;font-weight:700;box-shadow:4px 4px 0 var(--line)}
 .slot.learning{background:var(--butter);color:#3B0A1A;border-color:#3B0A1A;box-shadow:4px 4px 0 #3B0A1A}
 
+/* project details */
 details{border-top:2px dashed var(--line)}
 summary{cursor:pointer;padding:16px 28px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}
 summary::-webkit-details-marker{display:none}
@@ -121,11 +133,13 @@ th{background:var(--soft)}
 :root[data-theme="dark"] .ok{color:var(--mint)}
 .note{background:var(--soft);border-radius:16px;padding:16px 22px;margin-bottom:44px;max-width:none;font-size:.97rem}
 
+/* games */
 .game{text-align:center}
 .game .t-body{padding:18px 16px 22px}
 .game h3{font-size:1.4rem}
 .game .face{font-size:2.2rem}
 
+/* contact */
 .contact{background:var(--hero);color:var(--hero-ink);border-radius:28px;padding:72px 40px;text-align:center;position:relative;overflow:hidden}
 .contact h2{color:var(--butter);margin-bottom:14px}
 .contact p{margin-inline:auto}
@@ -133,6 +147,7 @@ th{background:var(--soft)}
 .btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 #3B0A1A}
 footer{padding:30px 0 120px;text-align:center;font-weight:600;opacity:.8}
 
+/* ---------- chatbot ---------- */
 .chat-fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:50;font:inherit;font-weight:700;background:var(--butter);color:#3B0A1A;border:2px solid #3B0A1A;border-radius:99px;padding:12px 20px;box-shadow:4px 4px 0 #3B0A1A;cursor:pointer;display:flex;gap:8px;align-items:center}
 .chat-fab svg{width:22px;height:22px}
 .chat{position:fixed;right:14px;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:60;width:min(380px,calc(100vw - 28px));height:min(520px,calc(100dvh - 150px));background:var(--card);border:2px solid var(--line);border-radius:22px;box-shadow:4px 4px 0 var(--line);display:flex;flex-direction:column;overflow:hidden}
@@ -156,6 +171,7 @@ footer{padding:30px 0 120px;text-align:center;font-weight:600;opacity:.8}
 .chat-form button{font:inherit;font-weight:700;background:var(--maroon);color:#FFE3E8;border:0;border-radius:99px;padding:0 18px;cursor:pointer}
 .chat-form button:disabled{opacity:.5;cursor:default}
 
+/* ---------- responsive ---------- */
 @media (max-width:860px){
   .hero-grid{grid-template-columns:1fr;padding-bottom:90px}
   .polaroid{max-width:240px}
@@ -166,7 +182,11 @@ footer{padding:30px 0 120px;text-align:center;font-weight:600;opacity:.8}
   .g2,.g3{grid-template-columns:1fr}
   .g4{grid-template-columns:1fr 1fr}
   .contact{padding:44px 22px}
-  .top nav a{padding:5px 10px}
+  .top nav a{padding:5px 8px;font-size:.85rem}
+  .topbar .wrap{width:calc(100% - 12px)}
+  .topbar nav{gap:2px}
+  .logo{display:none}
+  .topbar nav{margin-inline:auto}
   section{padding:54px 0}
 }
 @media (prefers-reduced-motion: reduce){
@@ -189,6 +209,21 @@ footer{padding:30px 0 120px;text-align:center;font-weight:600;opacity:.8}
   </symbol>
 </svg>
 
+<div class="topbar">
+  <div class="wrap">
+    <div class="top">
+      <a class="logo" href="#top">Hana S. Iligan</a>
+      <nav aria-label="Main" id="mainNav">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </div>
+</div>
+
 <header class="hero" id="top">
   <div class="bughunt" id="bughunt" aria-label="Bug hunt game">
     <button class="bug" style="--c:#FFD66B;--d:0s;left:44%;top:36%" aria-label="Squash bug"><svg><use href="#bugsym"/></svg></button>
@@ -199,17 +234,6 @@ footer{padding:30px 0 120px;text-align:center;font-weight:600;opacity:.8}
   </div>
 
   <div class="wrap" style="position:relative">
-    <div class="top">
-      <a class="logo" href="#top">Hana S. Iligan</a>
-      <nav aria-label="Main">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-
     <div class="hero-grid">
       <div>
         <h1>Hana Suzanne <span>Iligan</span></h1>
@@ -286,14 +310,41 @@ footer{padding:30px 0 120px;text-align:center;font-weight:600;opacity:.8}
       </article>
       <article class="ticket">
         <div class="t-head">
-          <div><div class="t-id">HSI-102</div><h3 class="t-title">Call Center Agent</h3></div>
+          <div><div class="t-id">HSI-102</div><h3 class="t-title">Customer Service Representative</h3></div>
           <span class="stamp mint">completed</span>
         </div>
         <div class="perf"></div>
         <div class="t-body">
-          <p class="meta">Alorica, MOA &middot; 3 months</p>
-          <p>I handled customer concerns, stayed calm under pressure, and met performance targets.</p>
+          <p class="meta">Alorica-MOA Philippines &middot; 3 months (call center)</p>
+          <p>I helped customers with their concerns, used CRM software and internal databases to track interactions accurately, stayed calm with upset customers, and worked toward monthly targets.</p>
           <span class="stat">98% overall metric score</span>
+        </div>
+      </article>
+    </div>
+
+    <h2 class="h2" style="margin-top:96px">Education</h2>
+    <svg class="squig" viewBox="0 0 120 14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" aria-hidden="true"><path d="M3 7 Q 15 -2 27 7 T 51 7 T 75 7 T 99 7 T 117 7"/></svg>
+    <div class="grid g2">
+      <article class="ticket">
+        <div class="t-head">
+          <div><div class="t-id">HSI-103</div><h3 class="t-title">BS in Information Technology</h3></div>
+          <span class="stamp">in progress</span>
+        </div>
+        <div class="perf"></div>
+        <div class="t-body">
+          <p class="meta">Philippine Christian University, Manila</p>
+          <p>Currently a 4th-year student.</p>
+        </div>
+      </article>
+      <article class="ticket">
+        <div class="t-head">
+          <div><div class="t-id">HSI-104</div><h3 class="t-title">Humanities and Social Sciences</h3></div>
+          <span class="stamp mint">graduated</span>
+        </div>
+        <div class="perf"></div>
+        <div class="t-body">
+          <p class="meta">Philippine Christian University</p>
+          <p>Graduated with honors.</p>
         </div>
       </article>
     </div>
@@ -412,6 +463,9 @@ footer{padding:30px 0 120px;text-align:center;font-weight:600;opacity:.8}
       <span class="slot">Figma</span>
       <span class="slot">Excel</span>
       <span class="slot">Customer service</span>
+      <span class="slot">Communication</span>
+      <span class="slot">Teamwork</span>
+      <span class="slot">English &amp; Tagalog</span>
       <span class="slot learning">QA testing (learning)</span>
     </div>
 
@@ -431,9 +485,11 @@ footer{padding:30px 0 120px;text-align:center;font-weight:600;opacity:.8}
   <div class="wrap">
     <div class="contact">
       <h2>Found a bug in my portfolio?</h2>
-      <p>I'd love to hear about it, and about any QA opportunities too. Come say hi on GitHub, or ask my chatbot anything about me.</p>
-      <a class="btn" href="https://github.com/suzieexoxo" target="_blank" rel="noopener">github.com/suzieexoxo</a>
-      
+      <p>I'd love to hear about it, and about any QA opportunities too. Send me an email, say hi on GitHub, or ask my chatbot anything about me.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:8px">
+        <a class="btn" style="margin-top:0" href="mailto:hanasuzannei@gmail.com">hanasuzannei@gmail.com</a>
+        <a class="btn" style="margin-top:0" href="https://github.com/suzieexoxo" target="_blank" rel="noopener">github.com/suzieexoxo</a>
+      </div>
     </div>
   </div>
 </section>
@@ -475,6 +531,20 @@ footer{padding:30px 0 120px;text-align:center;font-weight:600;opacity:.8}
 })();
 
 (function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('#mainNav a'));
+  var targets = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  function update(){
+    var y = window.scrollY + 120, current = -1;
+    targets.forEach(function(t,i){ if(t && t.offsetTop <= y) current = i; });
+    if(window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) current = links.length - 1;
+    links.forEach(function(a,i){ a.classList.toggle('active', i === current); });
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  window.addEventListener('resize', update);
+  update();
+})();
+
+(function(){
   var bugs = Array.prototype.slice.call(document.querySelectorAll('.bug'));
   var count = document.getElementById('huntCount');
   var msg = document.getElementById('huntMsg');
@@ -499,7 +569,7 @@ footer{padding:30px 0 120px;text-align:center;font-weight:600;opacity:.8}
 })();
 
 (function(){
-  var PHOTO_URL = 'hana.jpg'; 
+  var PHOTO_URL = ''; 
   if(PHOTO_URL){
     var slot = document.getElementById('photoSlot');
     slot.textContent = '';
@@ -529,11 +599,12 @@ footer{padding:30px 0 120px;text-align:center;font-weight:600;opacity:.8}
     "- Studies Information Technology, 4th year, at Philippine Christian University - Manila.",
     "- Currently a QA (quality assurance) intern, and wants to pursue a career in the QA field.",
     "- Previously worked 3 months as a call center agent at Alorica (MOA), with a 98% overall metric score.",
-    "- Skills: HTML, CSS, Figma, Excel, customer service, and learning QA testing.",
+    "- Skills: HTML, CSS, Figma, Excel, customer service, communication, teamwork, and learning QA testing. Speaks English and Tagalog.",
+    "- Education: studying BS in Information Technology (4th year) at Philippine Christian University. Also graduated with honors in Humanities and Social Sciences at Philippine Christian University.",
     "- Interests: QA and web designing. Her favorite color is maroon/red.",
     "- Plays many kinds of games: Minecraft, Valorant, TFT (Teamfight Tactics), and Roblox.",
     "- Her portfolio projects are practice exercises about a made-up app called Petal (login test cases, a bug report, a mini test plan, a usability check). They are not client work, and she has no certificates yet. Be honest about this if asked.",
-    "- GitHub: github.com/suzieexoxo. No public email is listed yet.",
+    "- Contact: email hanasuzannei@gmail.com, GitHub github.com/suzieexoxo. Do not share any phone number or home address.",
     "Stay on the topic of Hana and her work. Politely decline unrelated requests."
   ].join("\n");
 
@@ -548,15 +619,15 @@ footer{padding:30px 0 120px;text-align:center;font-weight:600;opacity:.8}
 
   function localAnswer(q){
     q = q.toLowerCase();
-    if(/(github|contact|email|reach|linkedin)/.test(q)) return "You can find Hana on GitHub at github.com/suzieexoxo. She hasn't listed a public email yet.";
-    if(/(skill|tool|know|html|css|figma|excel)/.test(q)) return "Hana works with HTML, CSS, Figma, and Excel, and she has strong customer service skills. She's also building her QA testing skills as an intern.";
+    if(/(github|contact|email|reach|linkedin)/.test(q)) return "You can email Hana at hanasuzannei@gmail.com or find her on GitHub at github.com/suzieexoxo.";
+    if(/(skill|tool|know|html|css|figma|excel)/.test(q)) return "Hana works with HTML, CSS, Figma, and Excel, plus customer service, communication, and teamwork. She speaks English and Tagalog, and she's building her QA testing skills as an intern.";
     if(/(experience|work|alorica|call|agent|job|metric)/.test(q)) return "Hana is a QA intern right now. Before that, she spent 3 months as a call center agent at Alorica (MOA) and finished with a 98% overall metric score.";
-    if(/(school|study|student|univ|college|pcu|course)/.test(q)) return "Hana is a 4th-year Information Technology student at Philippine Christian University - Manila.";
+    if(/(school|study|student|univ|college|pcu|course)/.test(q)) return "Hana is a 4th-year Information Technology student at Philippine Christian University - Manila. She also graduated with honors in Humanities and Social Sciences there.";
     if(/(game|play|minecraft|valo|tft|roblox|hobb)/.test(q)) return "Hana plays lots of different games: Minecraft, Valorant, TFT, and Roblox.";
     if(/(project|certif|portfolio|practice)/.test(q)) return "Hana is early in her career, so her projects here are practice exercises for a made-up app called Petal: login test cases, a bug report, a mini test plan, and a usability check. She doesn't have certificates yet.";
     if(/(qa|quality|test|goal|career|want|do)/.test(q)) return "Hana is a QA intern who wants to build her career in quality assurance. She's also interested in web design.";
     if(/(color|colour|maroon|red)/.test(q)) return "Hana's favorite color is maroon, which is why this whole site is maroon.";
-    return "I'm not sure about that one. I can tell you about Hana's skills, experience, studies, games, or how to find her on GitHub (github.com/suzieexoxo).";
+    return "I'm not sure about that one. I can tell you about Hana's skills, experience, studies, games, or how to contact her.";
   }
 
   async function getSample(){
