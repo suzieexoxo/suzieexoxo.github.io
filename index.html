@@ -474,7 +474,7 @@ footer{padding:30px 0 60px;text-align:center;font-weight:600;opacity:.8}
 <footer>Made in maroon, with a few too many bugs on purpose.</footer>
 
 <script>
-/* ---------- project tickets: only one open at a time ---------- */
+
 (function(){
   var all = Array.prototype.slice.call(document.querySelectorAll('#projects details'));
   all.forEach(function(d){
@@ -484,7 +484,7 @@ footer{padding:30px 0 60px;text-align:center;font-weight:600;opacity:.8}
   });
 })();
 
-/* ---------- highlight current section in the sticky menu ---------- */
+
 (function(){
   var links = Array.prototype.slice.call(document.querySelectorAll('#mainNav a'));
   var targets = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
@@ -499,7 +499,7 @@ footer{padding:30px 0 60px;text-align:center;font-weight:600;opacity:.8}
   update();
 })();
 
-/* ---------- bug hunt ---------- */
+
 (function(){
   var bugs = Array.prototype.slice.call(document.querySelectorAll('.bug'));
   var count = document.getElementById('huntCount');
@@ -524,9 +524,9 @@ footer{padding:30px 0 60px;text-align:center;font-weight:600;opacity:.8}
   });
 })();
 
-/* ---------- photo slot: set PHOTO_URL later (a data: URI or an uploaded asset) ---------- */
+
 (function(){
-  var PHOTO_URL = ''; // paste your photo link here later
+  var PHOTO_URL = 'hana.jpg'; 
   if(PHOTO_URL){
     var slot = document.getElementById('photoSlot');
     slot.textContent = '';
@@ -536,7 +536,7 @@ footer{padding:30px 0 60px;text-align:center;font-weight:600;opacity:.8}
   }
 })();
 </script>
-<!-- Botpress chatbot -->
+
 <script src="https://cdn.botpress.cloud/webchat/v5.0/inject.js"></script>
 <script src="https://files.bpcontent.cloud/2026/10/13/00/20261013002246-5VFA697S.js" defer></script>
 
